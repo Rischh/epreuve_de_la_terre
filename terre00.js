@@ -1,4 +1,4 @@
-const displayAlphabet = (alphabet) => {
+const AlphabetInLine = (alphabet) => {
   //   alphabet.reduce((string, letter) => string + letter);
 
   let string = "";
@@ -39,6 +39,6 @@ const alphabet = [
   "z",
 ];
 
-const result = displayAlphabet(alphabet);
+const result = AlphabetInLine(alphabet);
 
 console.log(result);
