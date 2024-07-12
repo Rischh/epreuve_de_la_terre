@@ -1,11 +1,15 @@
+const path = require("node:path");
+
 const ProgramName = () => {
-  const path = argv[1];
-  const array = path.split("/");
-  return array[array.length - 1];
+  // avec le module argv
+  // const { argv } = require("node:process");
+  // const path = arg[1];
+  // const array_path = path.split("/");
+  // return array_path[array_path.length - 1];
+
+  return path.basename(__filename);
 };
 
-const { argv } = require("node:process");
-
-const result = ProgramName(argv);
+const result = ProgramName();
 
 console.log(result);

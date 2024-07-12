@@ -1,43 +1,27 @@
-const AlphabetInLine = (alphabet) => {
-  //   alphabet.reduce((string, letter) => string + letter);
+const generateAlphabet = () => {
+  const alphabet = [];
 
+  for (let a = 97; a <= 122; a++) {
+    alphabet.push(String.fromCharCode(a));
+  }
+
+  // return a alphabet in a Array
+  return alphabet;
+};
+
+const AlphabetInLine = (alphabet) => {
   let string = "";
 
+  //   alphabet.reduce((string, letter) => string + letter);
+
   for (let i = 0; i < alphabet.length; i++) {
-    string = string + alphabet[i];
+    string += alphabet[i];
   }
 
   return string;
 };
 
-const alphabet = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
+const alphabet = generateAlphabet();
 
 const result = AlphabetInLine(alphabet);
 
