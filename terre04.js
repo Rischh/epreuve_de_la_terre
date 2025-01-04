@@ -1,10 +1,7 @@
 const { argv } = require("node:process");
 
 const isEven = (arg) => {
-  if (arg % 2 === 0) {
-    return "Pair";
-  }
-  return "Impair";
+  return arg % 2 === 0 ? "Pair" : "Impair";
 };
 
 const errorHandling = (arg) => {
