@@ -1,28 +1,14 @@
-const generateAlphabet = () => {
-  const alphabet = [];
+const displayAlphabet = (alphabet) => {
+  let oneLine = "";
 
-  for (let a = 97; a <= 122; a++) {
-    alphabet.push(String.fromCharCode(a));
-  }
+  //   alphabet.reduce((oneLine, letter) =>  + letter);
+  for (letter of alphabet) oneLine += letter;
 
-  // return a alphabet in a Array
-  return alphabet;
+  return oneLine;
 };
 
-const AlphabetInLine = (alphabet) => {
-  let string = "";
+const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 97));
 
-  //   alphabet.reduce((string, letter) => string + letter);
-
-  for (let i = 0; i < alphabet.length; i++) {
-    string += alphabet[i];
-  }
-
-  return string;
-};
-
-const alphabet = generateAlphabet();
-
-const result = AlphabetInLine(alphabet);
+const result = displayAlphabet(alphabet);
 
 console.log(result);
