@@ -1,14 +1,28 @@
-const { argv } = require("node:process");
+const arguments = process.argv.splice(2);
+const number = arguments[0];
+const exposant = arguments[1];
 
-const power = (arg) => {
-  const num = arg[0];
-  const exposant = arg[1];
+if (arguments.length !== 2) {
+  console.error("Le programme à besoin de 2 argument pour fonctionner.");
+  process.exit();
+}
 
-  return num ** exposant;
-};
+const bashSpecialCharacter = [""]; // not all
+const testIsAValidNumericalOperation = +number && +exposant;
 
-const arg = argv.splice(2);
+if (
+  Number.isNaN(testIsAValidNumericalOperation) ||
+  bashSpecialCharacter.includes(number && exposant)
+) {
+  console.error("Les arguments doivent être des entiers.");
+  process.exit();
+}
 
-const result = power(arg);
+if (exposant < 0) {
+  console.error("L'exposant doit être un entier positif.");
+  process.exit();
+}
 
-console.log(result);
+const power = number ** exposant;
+
+console.log(power);
