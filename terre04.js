@@ -1,28 +1,20 @@
-const { argv } = require("node:process");
+const arguments = process.argv.slice(2);
+const argument = arguments[0];
+const testIsAValidNumericalOperation = +argument;
 
-const isEven = (arg) => {
-  return arg % 2 === 0 ? "Pair" : "Impair";
-};
-
-const errorHandling = (arg) => {
-  const arg_type = +arg[0];
-
-  if (arg.length === 0 || arg.length > 1) {
-    throw new RangeError(
-      "Le programme à besoin de 1 argument pour fonctionner"
-    );
-  } else if (Number.isNaN(arg_type)) {
-    throw new TypeError("L'argument doit être un chiffre ou un nombre");
-  }
-};
-
-const arg = argv.slice(2);
-
-try {
-  errorHandling(arg);
-
-  const result = isEven(arg);
-  console.log(result);
-} catch (e) {
-  console.error(e.message);
+if (arguments.length !== 1) {
+  console.error("Le programme à besoin de 1 argument pour fonctionner.");
+  process.exit();
 }
+const bashSpecialCharacter = [""]; // not all
+if (
+  Number.isNaN(testIsAValidNumericalOperation) ||
+  bashSpecialCharacter.includes(argument)
+) {
+  console.error("L'argument doit être un entier.");
+  process.exit();
+}
+
+const isEven = argument % 2 === 0 ? "Pair" : "Impair";
+
+console.log(isEven);
