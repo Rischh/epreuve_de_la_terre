@@ -1,11 +1,30 @@
-const { argv } = require("node:process");
+const arguments = process.argv.splice(2);
+const argument = arguments[0];
 
-const squareRoot = (arg) => {
-  for (let i = 0; i < arg; i++) if (i ** 2 === arg) return i;
-};
+if (arguments.length !== 1) {
+  console.error("Le programme à besoin de 1 argument pour fonctionner.");
+  process.exit();
+}
 
-const arg = Number(argv.splice(2)[0]);
+const bashSpecialCharacter = [""]; // not all
+const testForValidNumericalOperation = +argument;
 
-const result = squareRoot(arg);
+const isInteger = Number.isNaN(testForValidNumericalOperation);
+const isBashCharacter = bashSpecialCharacter.includes(argument);
+const isIntergerNegative = argument < 0;
 
-console.log(result);
+const isNotValidArgument = isInteger || isBashCharacter || isIntergerNegative;
+
+if (isNotValidArgument) {
+  console.error("L'argument doit être un entier positif.");
+  process.exit();
+}
+
+const integerPositif = argument;
+
+for (let i = 0; i < integerPositif; i++) {
+  if (i ** 2 == integerPositif) {
+    console.log(i);
+    break;
+  }
+}
