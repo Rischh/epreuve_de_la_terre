@@ -1,17 +1,28 @@
-const { argv } = require("node:process");
+const arguments = process.argv.slice(2);
+const argument = arguments[0];
 
-const sizeOfString = (arg) => {
-  const list = arg.split("");
-  let size = null;
+if (arguments.length !== 1) {
+  console.error("Le programme à besoin d'un argument pour fonctionner.");
+  process.exit();
+}
 
-  for (let index in list) {
-    size = index;
-  }
+if (argument === "") {
+  console.log(0);
+  process.exit();
+}
 
-  return Number(size) + 1;
-};
+const testIsAValidNumericalOperation = +argument;
 
-const arg = argv.slice(2)[0];
+if (!Number.isNaN(testIsAValidNumericalOperation)) {
+  console.error("L'argument doit être une chaine de caractères.");
+  process.exit();
+}
 
-const result = sizeOfString(arg);
-console.log(result);
+const array = argument.split("");
+let length;
+
+for (let i = 0; i < array.length; i++) {
+  length = i + 1;
+}
+
+console.log(length);
