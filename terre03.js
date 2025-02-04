@@ -1,55 +1,33 @@
-const { argv } = require("node:process");
+const arguments = process.argv.slice(2);
+const argument = arguments[0];
 
-const generateAlphabet = () => {
-  const alphabet = [];
-
-  for (let a = 97; a <= 122; a++) {
-    alphabet.push(String.fromCharCode(a));
-  }
-
-  // return a alphabet in a Array
-  return alphabet;
-};
-
-const findLetterInAlphabet = (arg, alphabet) => {
-  const letter = arg.join("");
-  return alphabet.indexOf(letter);
-};
-
-const startAlphabetAt = (index, alphabet) => {
-  let string = "";
-
-  for (let i = index; i < alphabet.length; i++) {
-    string += alphabet[i];
-  }
-
-  return string;
-};
-
-const errorHandling = (arg) => {
-  const arg_type = +arg[0];
-
-  if (arg.length === 0 || arg.length > 1) {
-    throw new RangeError(
-      "Le programme à besoin de 1 argument pour fonctionner"
-    );
-  } else if (!Number.isNaN(arg_type)) {
-    throw new TypeError("L'argument doit être une lettre");
-  } else if (arg[0].length > 1) {
-    throw new RangeError("L'argument doit contenir qu'une seule lettre");
-  }
-};
-
-const arg = argv.slice(2);
-
-try {
-  errorHandling(arg);
-
-  const alphabet = generateAlphabet();
-  const index = findLetterInAlphabet(arg, alphabet);
-
-  const result = startAlphabetAt(index, alphabet);
-  console.log(result);
-} catch (e) {
-  console.error(e.message);
+if (arguments.length !== 1) {
+  console.error("Le programme à besoin d'un unique argument pour fonctionner.");
+  process.exit();
 }
+if (argument.length > 1) {
+  console.error("L'argument doit contenir qu'une seule lettre minuscule.");
+  process.exit();
+}
+const bashSpecialCharacter = ["", ">"]; // not all
+const charASCII = argument.charCodeAt();
+if (
+  charASCII < 97 ||
+  charASCII > 122 ||
+  bashSpecialCharacter.includes(argument)
+) {
+  console.error("L'argument doit être une lettre minuscule.");
+  process.exit();
+}
+
+const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 97));
+
+const indexOfLetter = alphabet.indexOf(argument);
+
+let alphabetInLine = "";
+
+for (let i = indexOfLetter; i < alphabet.length; i++) {
+  alphabetInLine += alphabet[i];
+}
+
+console.log(alphabetInLine);
