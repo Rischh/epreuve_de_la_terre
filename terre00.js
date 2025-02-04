@@ -1,14 +1,7 @@
-const displayAlphabet = (alphabet) => {
-  let oneLine = "";
-
-  //   alphabet.reduce((oneLine, letter) =>  + letter);
-  for (letter of alphabet) oneLine += letter;
-
-  return oneLine;
-};
-
 const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 97));
 
-const result = displayAlphabet(alphabet);
+let alphabetInLine = "";
 
-console.log(result);
+for (const letter of alphabet) alphabetInLine += letter;
+
+console.log(alphabetInLine);
