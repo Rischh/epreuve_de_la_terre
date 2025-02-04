@@ -1,21 +1,21 @@
-const { argv } = require("node:process");
+const arguments = process.argv.slice(2);
 
-const reverseString = (arg) => {
-  const list = arg.split("");
-  let copyList = [...list];
+if (arguments.length !== 1) {
+  console.error("Le programme à besoin d'un argument pour fonctionner.");
+  process.exit();
+}
 
-  let newString = "";
+const argument = arguments[0];
 
-  for (let i = 0; i < list.length; i++) {
-    const lastIndex = copyList[copyList.length - 1];
-    newString += lastIndex;
-    copyList.pop();
-  }
+const stringInList = argument.split("");
+let copyList = [...stringInList];
 
-  return newString;
-};
+let reverseString = "";
 
-const arg = argv.slice(2)[0];
+for (let i = 0; i < stringInList.length; i++) {
+  const lastElement = copyList[copyList.length - 1];
+  reverseString += lastElement;
+  copyList.pop();
+}
 
-const result = reverseString(arg);
-console.log(result);
+console.log(reverseString);
