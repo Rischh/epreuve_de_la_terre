@@ -1,29 +1,32 @@
-const { argv } = require("node:process");
+const arguments = process.argv.splice(2);
 
-// Acception only one list
-const sort = (arr) => {
-  const copyArr = [...arr];
-  const sortedArr = [];
+if (arguments.length < 2) {
+  console.error("Le programme a besoin d'au moins 2 arguments.");
+  process.exit();
+}
 
-  for (let i = 0; i < arr.length; i++) {
-    let max = 0;
-    for (value of copyArr) if (max < value) max = value;
-    sortedArr.unshift(max);
-    copyArr.splice(copyArr.indexOf(max), 1);
+const testIsAValidNumericalOperation = arguments.map(ele => +ele);
+const isArrayOfNumber =
+  testIsAValidNumericalOperation.filter(ele => Number.isNaN(ele)).length > 0;
+
+const bashSpecialCharacter = [""]; // not all
+for (const arg of arguments)
+  if (isArrayOfNumber || bashSpecialCharacter.includes(arg)) {
+    console.error("L'argument doit être un entier.");
+    process.exit();
   }
 
-  return sortedArr;
-};
+const array = arguments.map(n => Number(n));
+const copyArray = [...array];
 
-// Accept only two list
-const isSorted = (arr, sortedArr) => {
-  if (arr.toString() == sortedArr.toString()) return "Triée !";
-  return "Pas triée !";
-};
+const sortedArr = [];
 
-const arg = argv.splice(2);
-const arr = arg.map((n) => Number(n));
+for (let i = 0; i < array.length; i++) {
+  let max = 0;
+  for (value of copyArray) if (max < value) max = value;
+  sortedArr.unshift(max);
+  copyArray.splice(copyArray.indexOf(max), 1);
+}
 
-const result = isSorted(arr, sort(arr));
-
-console.log(result);
+if (array.toString() == sortedArr.toString()) console.log("Triée !");
+else console.log("Pas triée !");
