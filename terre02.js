@@ -1,18 +1,10 @@
-const { argv } = require("node:process");
+const arguments = process.argv.slice(2);
 
-const detectArg = (arg) => {
-  if (arg.length === 0) {
-    throw new Error(
-      "Le programme à besoin d'au moins un argument pour fonctionner"
-    );
-  }
-};
-
-const arg = argv.slice(2);
-
-try {
-  detectArg(arg);
-  arg.forEach((e) => console.log(e));
-} catch (e) {
-  console.error(e.message);
+if (arguments.length === 0) {
+  console.error(
+    "Le programme à besoin d'au moins un argument pour fonctionner."
+  );
+  process.exit();
 }
+
+for (const arg of arguments) console.log(arg);
