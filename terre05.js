@@ -1,27 +1,45 @@
-const { argv } = require("node:process");
+const arguments = process.argv.slice(2);
+const dividend = arguments[0];
+const divisor = arguments[1];
 
-// Euclidean Division
-const division = (firstArg, secondArg) => {
-  const quotient = Math.floor(firstArg / secondArg);
-  const remainder = firstArg % secondArg;
-
-  return `quotient: ${quotient} \nreste: ${remainder}`;
-};
-
-const errorHandling = (firstArg, secondArg) => {
-  if (firstArg < secondArg) throw new Error("Erreur");
-  if (secondArg == 0 || secondArg == 1) throw new Error("Erreur");
-};
-
-const arg = argv.slice(2);
-
-const firstArg = arg[0];
-const secondArg = arg[1];
-
-try {
-  errorHandling(firstArg, secondArg);
-  const result = division(firstArg, secondArg);
-  console.log(result);
-} catch (e) {
-  console.error(e.message);
+if (arguments.length !== 2) {
+  console.error("Le programme à besoin de 2 argument pour fonctionner.");
+  process.exit();
 }
+
+const bashSpecialCharacter = [""]; // not all
+const numbersToValidate = +dividend && +divisor;
+
+if (
+  Number.isNaN(numbersToValidate) ||
+  bashSpecialCharacter.includes(dividend && divisor)
+) {
+  console.error("L'argument doit être un entier.");
+  process.exit();
+}
+
+if (dividend < divisor) {
+  console.error("Le diviseur doit être inférieur au divisé.");
+  process.exit();
+}
+
+const notAValidDivisor = 0;
+
+if (divisor == notAValidDivisor) {
+  console.error("La division n'est pas possible si le diviseur est '0'");
+  process.exit();
+}
+
+const uselessDivisor = 1;
+
+if (divisor == uselessDivisor) {
+  console.error("La division est inutile si le diviseur est '1'");
+  process.exit();
+}
+
+const quotient = Math.floor(dividend / divisor);
+const remainder = dividend % divisor;
+
+const euclideanDivision = `quotient: ${quotient} \nreste: ${remainder}`;
+
+console.log(euclideanDivision);
