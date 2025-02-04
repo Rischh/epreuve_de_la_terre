@@ -5,12 +5,15 @@ if (arguments.length !== 1) {
   console.error("Le programme à besoin d'un unique argument pour fonctionner.");
   process.exit();
 }
+
 if (argument.length > 1) {
   console.error("L'argument doit contenir qu'une seule lettre minuscule.");
   process.exit();
 }
+
 const bashSpecialCharacter = ["", ">"]; // not all
 const charASCII = argument.charCodeAt();
+
 if (
   charASCII < 97 ||
   charASCII > 122 ||
