@@ -1,22 +1,38 @@
-const { argv } = require("node:process");
+const arguments = process.argv.splice(2);
 
-const findSwiss = (arg) => {
-  let max = 0;
+if (arguments.length !== 3) {
+  console.error("Le programme à besoin de 3 argument pour fonctionner.");
+  process.exit();
+}
 
-  for (value of arg) if (max < value) max = value;
+const numbersToValidate = arguments.map(value => +value);
+const hasInvalidNumbers =
+  numbersToValidate.filter(value => Number.isNaN(value)).length > 0;
 
-  let middle = 0;
+const bashSpecialCharacter = [""]; // not all
 
-  for (value of arg) {
-    if (value == max) continue
-    if (middle < value) middle = value
+for (let i = 0; i < arguments.length; i++) {
+  if (hasInvalidNumbers || bashSpecialCharacter.includes(arguments[i])) {
+    console.error("L'argument doit être un entier.");
+    process.exit();
   }
+  for (let j = i + 1; j < arguments.length; j++) {
+    if (arguments[i] === arguments[j]) {
+      console.error("Les arguments ne doivent pas être égaux.");
+      process.exit();
+    }
+  }
+}
 
-  return middle;
-};
+let max = 0;
 
-const arg = argv.splice(2);
+for (value of arguments) if (max < value) max = value;
 
-const result = findSwiss(arg);
+let middle = 0;
 
-console.log(result);
+for (value of arguments) {
+  if (value == max) continue;
+  if (middle < value) middle = value;
+}
+
+console.log(middle);
