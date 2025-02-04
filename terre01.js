@@ -1,7 +1,9 @@
-const { basename } = require("node:path");
+const absolutePath = __filename;
 
-const programName = basename(__filename);
+const pathToArray = absolutePath.split("/");
 
-const result = programName;
+const lastIndex = pathToArray.length - 1;
 
-console.log(result);
+const fileName = pathToArray[lastIndex];
+
+console.log(fileName);
