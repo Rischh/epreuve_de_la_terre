@@ -1,19 +1,45 @@
-const { argv } = require("node:process");
+const arguments = process.argv.splice(2);
+const argument = arguments[0];
 
-const isPrime = (arg) => {
-  const exceptionNumber = [0,1]
-  const onlyEvenPrimeNumber = 2
-
-  if(exceptionNumber.includes(arg)) return `Non, ${arg} n'est pas un nombre premier.`;
-  if (arg == onlyEvenPrimeNumber) return `Oui, ${arg} est un nombre premier.`; 
-
-  for (let i = 2; i < arg; i++) {
-    if (Number.isInteger(arg / i)) return `Non, ${arg} n'est pas un nombre premier.`;
-  };
-  return `Oui, ${arg} est un nombre premier.`;
+if (arguments.length !== 1) {
+  console.error("Le programme à besoin de 1 argument pour fonctionner.");
+  process.exit();
 }
-const arg = Number(argv.splice(2)[0]);
 
-const result = isPrime(arg);
+const bashSpecialCharacter = [""]; // not all
+const numberToValidate = +argument;
 
-console.log(result);
+const isInteger = Number.isNaN(numberToValidate);
+const isBashCharacter = bashSpecialCharacter.includes(argument);
+const isIntergerNegative = argument < 0;
+
+const isNotValidArgument = isInteger || isBashCharacter || isIntergerNegative;
+
+if (isNotValidArgument) {
+  console.error("L'argument doit être un entier naturel.");
+  process.exit();
+}
+
+const isPrimeMessage = `Oui, ${argument} est un nombre premier.`;
+const isCompositeMessage = `Non, ${argument} n'est pas un nombre premier.`;
+
+const exceptionNumber = [0, 1];
+
+if (exceptionNumber.includes(+argument)) {
+  console.log(isCompositeMessage);
+  process.exit();
+}
+
+const onlyEvenPrimeNumber = 2;
+if (argument == onlyEvenPrimeNumber) {
+  console.log(isPrimeMessage);
+  process.exit();
+}
+
+for (let i = 0; i < argument; i++)
+  if (Number.isInteger(argument / i) && argument / i != argument) {
+    console.log(isCompositeMessage);
+    process.exit();
+  }
+
+console.log(isPrimeMessage);
