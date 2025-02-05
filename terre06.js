@@ -7,12 +7,12 @@ if (arguments.length !== 1) {
 
 const argument = arguments[0];
 
-const stringInList = argument.split("");
-let copyList = [...stringInList];
+const stringInArray = argument.split("");
+let copyList = [...stringInArray];
 
 let reverseString = "";
 
-for (let i = 0; i < stringInList.length; i++) {
+for (let i = 0; i < stringInArray.length; i++) {
   const lastElement = copyList[copyList.length - 1];
   reverseString += lastElement;
   copyList.pop();
