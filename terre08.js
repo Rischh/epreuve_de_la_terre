@@ -23,6 +23,15 @@ if (exposant < 0) {
   process.exit();
 }
 
-const power = number ** exposant;
+if (exposant == 0) {
+  console.log(1);
+  process.exit();
+}
+
+let power = number;
+
+for (let i = 1; i < exposant; i++) {
+  power *= number;
+}
 
 console.log(power);
