@@ -1,7 +1,7 @@
-const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 97));
+let alphabet = "";
 
-let alphabetInLine = "";
+for (let i = 97; i <= 122; i++) {
+  alphabet += String.fromCharCode(i);
+}
 
-for (const letter of alphabet) alphabetInLine += letter;
-
-console.log(alphabetInLine);
+console.log(alphabet);
