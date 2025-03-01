@@ -1,22 +1,17 @@
-const arguments = process.argv.slice(2);
-const argument = arguments[0];
+const args = process.argv.slice(2);
 
-if (arguments.length !== 1) {
-  console.error("Le programme à besoin de 1 argument pour fonctionner.");
+if (args.length !== 1) {
+  console.error("Le programme a besoin de 1 argument pour fonctionner.");
   process.exit();
 }
 
-const bashSpecialCharacter = [""]; // not all
-const testIsAValidNumericalOperation = +argument;
+const number = +args[0];
 
-if (
-  Number.isNaN(testIsAValidNumericalOperation) ||
-  bashSpecialCharacter.includes(argument)
-) {
-  console.error("L'argument doit être un entier.");
+if (isNaN(number)) {
+  console.error("L'argument doit être un nombre entier.");
   process.exit();
 }
 
-const isEven = argument % 2 === 0 ? "Pair" : "Impair";
+const evenOrOdd = number % 2 === 0 ? "Pair" : "Impair";
 
-console.log(isEven);
+console.log(evenOrOdd);
