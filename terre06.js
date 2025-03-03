@@ -1,21 +1,21 @@
-const arguments = process.argv.slice(2);
+const args = process.argv.slice(2);
 
-if (arguments.length !== 1) {
-  console.error("Le programme à besoin d'un argument pour fonctionner.");
+if (args.length !== 1) {
+  console.error("Le programme a besoin d'un argument pour fonctionner.");
   process.exit();
 }
 
-const argument = arguments[0];
+const arg = args[0];
 
-const stringInArray = argument.split("");
-let copyList = [...stringInArray];
-
-let reverseString = "";
-
-for (let i = 0; i < stringInArray.length; i++) {
-  const lastElement = copyList[copyList.length - 1];
-  reverseString += lastElement;
-  copyList.pop();
+if (arg.length === 0) {
+  console.error("L'argument ne peut pas être une chaine vide.");
+  process.exit();
 }
 
-console.log(reverseString);
+let reverseArg = "";
+
+for (let i = arg.length - 1; i >= 0; i--) {
+  reverseArg += arg[i];
+}
+
+console.log(reverseArg);
