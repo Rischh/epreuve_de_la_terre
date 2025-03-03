@@ -1,9 +1,19 @@
-const absolutePath = __filename;
+const path = process.argv[1];
 
-const pathToArray = absolutePath.split("/");
+const SLASH_CHAR_CODE = 47;
+const BACK_SLASH_CHAR_CODE = 92;
 
-const lastIndex = pathToArray.length - 1;
+let programName = "";
 
-const fileName = pathToArray[lastIndex];
+for (let i = 0; i < path.length; i++) {
+  if (
+    path[i].charCodeAt() === SLASH_CHAR_CODE ||
+    path[i].charCodeAt() === BACK_SLASH_CHAR_CODE
+  ) {
+    programName = "";
+    continue;
+  }
+  programName += path[i];
+}
 
-console.log(fileName);
+console.log(programName);
