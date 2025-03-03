@@ -1,28 +1,26 @@
-const arguments = process.argv.slice(2);
-const argument = arguments[0];
+const args = process.argv.slice(2);
 
-if (arguments.length !== 1) {
-  console.error("Le programme à besoin d'un argument pour fonctionner.");
+if (args.length !== 1) {
+  console.error("Le programme a besoin d'un unique argument pour fonctionner.");
   process.exit();
 }
 
-if (argument === "") {
-  console.log(0);
-  process.exit();
-}
+const arg = args[0];
 
-const testIsAValidNumericalOperation = +argument;
-
-if (!Number.isNaN(testIsAValidNumericalOperation)) {
+if (!Number.isNaN(parseInt(arg))) {
   console.error("L'argument doit être une chaine de caractères.");
   process.exit();
 }
 
-const array = argument.split("");
-let length;
-
-for (let i = 0; i < array.length; i++) {
-  length = i + 1;
+if (arg === "") {
+  console.log(0);
+  process.exit();
 }
 
-console.log(length);
+let lengthOfString;
+
+for (let i = 0; arg[i]; i++) {
+  lengthOfString = i + 1;
+}
+
+console.log(lengthOfString);
