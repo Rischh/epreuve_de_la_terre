@@ -1,45 +1,34 @@
-const arguments = process.argv.splice(2);
-const argument = arguments[0];
+const args = process.argv.splice(2);
 
-if (arguments.length !== 1) {
-  console.error("Le programme à besoin de 1 argument pour fonctionner.");
+if (args.length !== 1) {
+  console.error("Le programme a besoin d'un unique argument pour fonctionner.");
   process.exit();
 }
 
-const bashSpecialCharacter = [""]; // not all
-const numberToValidate = +argument;
+const arg = parseInt(args[0]);
 
-const isInteger = Number.isNaN(numberToValidate);
-const isBashCharacter = bashSpecialCharacter.includes(argument);
-const isIntergerNegative = argument < 0;
+if (isNaN(arg)) {
+  console.error("L'argument doit être un nombre.");
+  process.exit();
+}
 
-const isNotValidArgument = isInteger || isBashCharacter || isIntergerNegative;
-
-if (isNotValidArgument) {
+if (arg < 0) {
   console.error("L'argument doit être un entier naturel.");
   process.exit();
 }
 
-const isPrimeMessage = `Oui, ${argument} est un nombre premier.`;
-const isCompositeMessage = `Non, ${argument} n'est pas un nombre premier.`;
+const compositeMessage = `Non, ${arg} n'est pas un nombre premier.`;
 
-const exceptionNumber = [0, 1];
+const exceptionNumbers = [0, 1];
 
-if (exceptionNumber.includes(+argument)) {
-  console.log(isCompositeMessage);
+if (exceptionNumbers.includes(arg)) {
+  console.log(compositeMessage);
   process.exit();
 }
 
-const onlyEvenPrimeNumber = 2;
-if (argument == onlyEvenPrimeNumber) {
-  console.log(isPrimeMessage);
-  process.exit();
-}
-
-for (let i = 0; i < argument; i++)
-  if (Number.isInteger(argument / i) && argument / i != argument) {
-    console.log(isCompositeMessage);
+for (let i = 2; i < arg; i++)
+  if (arg % i === 0) {
+    console.log(compositeMessage);
     process.exit();
   }
-
-console.log(isPrimeMessage);
+console.log(`Oui, ${arg} est un nombre premier.`);
