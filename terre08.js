@@ -1,19 +1,14 @@
-const arguments = process.argv.splice(2);
-const number = arguments[0];
-const exposant = arguments[1];
+const args = process.argv.splice(2);
 
-if (arguments.length !== 2) {
-  console.error("Le programme à besoin de 2 argument pour fonctionner.");
+if (args.length !== 2) {
+  console.error("Le programme a besoin de 2 argument pour fonctionner.");
   process.exit();
 }
 
-const bashSpecialCharacter = [""]; // not all
-const testIsAValidNumericalOperation = +number && +exposant;
+const number = parseInt(args[0]);
+const exposant = parseInt(args[1]);
 
-if (
-  Number.isNaN(testIsAValidNumericalOperation) ||
-  bashSpecialCharacter.includes(number && exposant)
-) {
+if (isNaN(number) || isNaN(exposant)) {
   console.error("Les arguments doivent être des entiers.");
   process.exit();
 }
@@ -23,15 +18,13 @@ if (exposant < 0) {
   process.exit();
 }
 
-if (exposant == 0) {
-  console.log(1);
+if (number === 0 && exposant === 0) {
+  console.error(
+    "Le puissance de 0 sur 0 est une expression mathematiquement indeterminee."
+  );
   process.exit();
 }
 
-let power = number;
-
-for (let i = 1; i < exposant; i++) {
-  power *= number;
-}
+let power = number ** exposant;
 
 console.log(power);
