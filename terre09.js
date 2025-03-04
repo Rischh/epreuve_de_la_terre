@@ -1,30 +1,23 @@
-const arguments = process.argv.splice(2);
-const argument = arguments[0];
+const args = process.argv.splice(2);
 
-if (arguments.length !== 1) {
-  console.error("Le programme à besoin de 1 argument pour fonctionner.");
+if (args.length !== 1) {
+  console.error("Le programme a besoin d'un unique argument pour fonctionner.");
   process.exit();
 }
 
-const bashSpecialCharacter = [""]; // not all
-const testForValidNumericalOperation = +argument;
+const arg = parseInt(args[0]);
 
-const isInteger = Number.isNaN(testForValidNumericalOperation);
-const isBashCharacter = bashSpecialCharacter.includes(argument);
-const isIntergerNegative = argument < 0;
-
-const isNotValidArgument = isInteger || isBashCharacter || isIntergerNegative;
-
-if (isNotValidArgument) {
-  console.error("L'argument doit être un entier positif.");
+if (isNaN(arg)) {
+  console.error("Le programme a besoin d'un nombre.");
   process.exit();
 }
 
-const integerPositif = argument;
+if (arg < 0) {
+  console.error("Le nombre doit être un entier positif.");
+}
 
-for (let i = 0; i < integerPositif; i++) {
-  if (i ** 2 == integerPositif) {
+for (let i = 0; i <= arg; i++)
+  if (i ** 2 === arg) {
     console.log(i);
     break;
   }
-}
