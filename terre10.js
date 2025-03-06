@@ -5,30 +5,32 @@ if (args.length !== 1) {
   process.exit();
 }
 
-const arg = parseInt(args[0]);
+const arg = args[0];
 
-if (isNaN(arg)) {
-  console.error("L'argument doit être un nombre.");
+if (arg === "" || !Number.isInteger(+arg)) {
+  console.error("L'argument doit être un entier.");
   process.exit();
 }
 
-if (arg < 0) {
-  console.error("L'argument doit être un entier naturel.");
+const number = +arg;
+
+if (number < 0) {
+  console.error("L'argument doit être un entier positif.");
   process.exit();
 }
 
-const compositeMessage = `Non, ${arg} n'est pas un nombre premier.`;
+const compositeMessage = `Non, ${number} n'est pas un nombre premier.`;
 
 const exceptionNumbers = [0, 1];
 
-if (exceptionNumbers.includes(arg)) {
+if (exceptionNumbers.includes(number)) {
   console.log(compositeMessage);
   process.exit();
 }
 
-for (let i = 2; i < arg; i++)
-  if (arg % i === 0) {
+for (let i = 2; i < number; i++)
+  if (number % i === 0) {
     console.log(compositeMessage);
     process.exit();
   }
-console.log(`Oui, ${arg} est un nombre premier.`);
+console.log(`Oui, ${number} est un nombre premier.`);
