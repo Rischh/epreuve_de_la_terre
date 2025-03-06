@@ -1,21 +1,21 @@
-const arguments = process.argv.slice(2);
+const args = process.argv.slice(2);
 
-if (arguments.length !== 1) {
+if (args.length !== 1) {
   console.error("Le programme a besoin d'un unique argument pour fonctionner.");
   process.exit();
 }
 
-if (arguments[0].length > 1) {
-  console.error("L'argument doit contenir qu'une seule lettre minuscule.");
+const arg = args[0];
+
+if (arg.length > 1) {
+  console.error("L'argument doit contenir qu'un seul caractère.");
   process.exit();
 }
 
-const letter = arguments[0];
-
-const letterAscii = letter.charCodeAt();
+const letterAscii = arg.charCodeAt();
 
 if (letterAscii < 97 || letterAscii > 122) {
-  console.error("L'argument doit être une lettre minuscule.");
+  console.error("Le caractère doit être une lettre minuscule.");
   process.exit();
 }
 
