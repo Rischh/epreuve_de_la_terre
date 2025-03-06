@@ -1,32 +1,23 @@
-const arguments = process.argv.splice(2);
+const args = process.argv.splice(2);
 
-if (arguments.length < 2) {
+if (args.length < 2) {
   console.error("Le programme a besoin d'au moins 2 arguments.");
   process.exit();
 }
 
-const testIsAValidNumericalOperation = arguments.map(ele => +ele);
-const isArrayOfNumber =
-  testIsAValidNumericalOperation.filter(ele => Number.isNaN(ele)).length > 0;
+const numbers = [];
 
-const bashSpecialCharacter = [""]; // not all
-for (const arg of arguments)
-  if (isArrayOfNumber || bashSpecialCharacter.includes(arg)) {
-    console.error("L'argument doit être un entier.");
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === "" || !Number.isInteger(+args[i])) {
+    console.error("Le programme a besoin d'une liste d'entiers.");
+    process.exit();
+  } else numbers.push(+args[i]);
+}
+
+for (let i = 1; i < numbers.length; i++)
+  if (numbers[i] < numbers[i - 1]) {
+    console.log("Pas triée !");
     process.exit();
   }
 
-const array = arguments.map(n => Number(n));
-const copyArray = [...array];
-
-const sortedArr = [];
-
-for (let i = 0; i < array.length; i++) {
-  let max = 0;
-  for (value of copyArray) if (max < value) max = value;
-  sortedArr.unshift(max);
-  copyArray.splice(copyArray.indexOf(max), 1);
-}
-
-if (array.toString() == sortedArr.toString()) console.log("Triée !");
-else console.log("Pas triée !");
+console.log("Triée !");
