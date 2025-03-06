@@ -7,13 +7,13 @@ if (args.length !== 1) {
 
 const arg = args[0];
 
-if (!Number.isNaN(parseInt(arg))) {
-  console.error("L'argument doit être une chaine de caractères.");
+if (arg === "") {
+  console.log(0);
   process.exit();
 }
 
-if (arg === "") {
-  console.log(0);
+if (!isNaN(arg)) {
+  console.error("L'argument doit être une chaine de caractères.");
   process.exit();
 }
 
