@@ -5,40 +5,38 @@ if (args.length !== 2) {
   process.exit()
 }
 
-const firstArg = args[0]
-const secondArg = args[1]
+for (const arg of args) {
+  if (isNaN(arg)) {
+    console.error("Les arguments doivent être des nombres entiers.")
+    process.exit()
+  }
+}
 
-if (
-  firstArg === "" ||
-  secondArg === "" ||
-  !Number.isInteger(+firstArg) ||
-  !Number.isInteger(+secondArg)
-) {
-  console.error("Les arguments doivent être des nombres entiers.")
+const dividend = +args[0]
+const divisor = +args[1]
+
+if (divisor === 0) {
+  console.error("La division n'est pas possible si le diviseur est '0'.")
   process.exit()
 }
 
-const dividend = +firstArg
-const divisor = +secondArg
-
-if (divisor === 0) {
-  console.error("La division n'est pas possible si le diviseur est '0'")
+if (divisor > dividend) {
+  console.error("Le diviseur doit être plus petit que le dividend.")
   process.exit()
 }
 
 const quotient = String(dividend / divisor)
 
-let floorQuotient = ""
+let trunkQuotient = ""
 
 for (let i = 0; i < quotient.length; i++) {
   if (quotient[i] === ".") break
-  floorQuotient += quotient[i]
+  trunkQuotient += quotient[i]
 }
 
-floorQuotient = +floorQuotient
 const remainder = dividend % divisor
 
-const euclideanDivision = `quotient: ${floorQuotient}
+const euclideanDivision = `quotient: ${trunkQuotient}
 reste: ${remainder}`
 
 console.log(euclideanDivision)
