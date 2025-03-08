@@ -3,14 +3,14 @@ const path = process.argv[1]
 const SLASH_CHAR_CODE = 47
 const BACK_SLASH_CHAR_CODE = 92
 
-let programName = ""
+let fileName = ""
 
-for (let i = 0; i < path.length; i++) {
-  if (path[i].charCodeAt() === SLASH_CHAR_CODE || path[i].charCodeAt() === BACK_SLASH_CHAR_CODE) {
-    programName = ""
+for (const char of path) {
+  if (char.charCodeAt() === SLASH_CHAR_CODE || char.charCodeAt() === BACK_SLASH_CHAR_CODE) {
+    fileName = ""
     continue
   }
-  programName += path[i]
+  fileName += char
 }
 
-console.log(programName)
+console.log(fileName)
