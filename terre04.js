@@ -5,14 +5,12 @@ if (args.length !== 1) {
   process.exit()
 }
 
-const arg = args[0]
-
-if (arg === "" || !Number.isInteger(+arg)) {
+if (isNaN(args[0])) {
   console.error("L'argument doit être un nombre entier.")
   process.exit()
 }
 
-const number = +arg
+const number = +args[0]
 
 const evenOrOdd = number % 2 === 0 ? "Pair" : "Impair"
 
