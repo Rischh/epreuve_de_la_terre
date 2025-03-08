@@ -5,14 +5,12 @@ if (args.length !== 1) {
   process.exit()
 }
 
-const arg = args[0]
-
-if (arg.length > 1) {
+if (args[0].length > 1) {
   console.error("L'argument doit contenir qu'un seul caractère.")
   process.exit()
 }
 
-const letterAscii = arg.charCodeAt()
+const letterAscii = args[0].charCodeAt()
 
 if (letterAscii < 97 || letterAscii > 122) {
   console.error("Le caractère doit être une lettre minuscule.")
