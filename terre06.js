@@ -5,17 +5,17 @@ if (args.length !== 1) {
   process.exit()
 }
 
-const arg = args[0]
+const valueStr = args[0]
 
-if (arg.length === 0) {
+if (valueStr.length === 0) {
   console.error("L'argument ne peut pas être une chaine vide.")
   process.exit()
 }
 
-let reverseArg = ""
+let reverseString = ""
 
-for (let i = arg.length - 1; i >= 0; i--) {
-  reverseArg += arg[i]
+for (let i = valueStr.length - 1; i >= 0; i--) {
+  reverseString += valueStr[i]
 }
 
-console.log(reverseArg)
+console.log(reverseString)
