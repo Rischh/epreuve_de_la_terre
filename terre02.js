@@ -1,8 +1,8 @@
-const args = process.argv.slice(2);
+const args = process.argv.slice(2)
 
 if (args.length === 0) {
-  console.error("Le programme a besoin d'au moins un argument pour fonctionner.");
-  process.exit();
+  console.error("Le programme a besoin d'au moins un argument pour fonctionner.")
+  process.exit()
 }
 
-for (const arg of args) console.log(arg);
+for (const arg of args) console.log(arg)
