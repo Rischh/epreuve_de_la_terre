@@ -1,36 +1,34 @@
-const args = process.argv.splice(2)
+const args = process.argv.slice(2)
 
 if (args.length !== 1) {
   console.error("Le programme a besoin d'un unique argument pour fonctionner.")
   process.exit()
 }
 
-const arg = args[0]
-
-if (arg === "" || !Number.isInteger(+arg)) {
-  console.error("L'argument doit être un entier.")
+if (isNaN(args[0])) {
+  console.error("L'argument doit être un nombre entier.")
   process.exit()
 }
 
-const number = +arg
+const number = +args[0]
 
 if (number < 0) {
   console.error("L'argument doit être un entier positif.")
   process.exit()
 }
 
-const compositeMessage = `Non, ${number} n'est pas un nombre premier.`
+let isPrimeNumber = true
 
 const exceptionNumbers = [0, 1]
 
-if (exceptionNumbers.includes(number)) {
-  console.log(compositeMessage)
-  process.exit()
+if (exceptionNumbers.includes(number)) isPrimeNumber = false
+
+for (let i = 2; i < number; i++) {
+  if (number % i === 0) isPrimeNumber = false
 }
 
-for (let i = 2; i < number; i++)
-  if (number % i === 0) {
-    console.log(compositeMessage)
-    process.exit()
-  }
-console.log(`Oui, ${number} est un nombre premier.`)
+if (isPrimeNumber) {
+  console.log(`Oui, ${number} est un nombre premier.`)
+  process.exit()
+}
+console.log(`Non, ${number} n'est pas un nombre premier.`)
