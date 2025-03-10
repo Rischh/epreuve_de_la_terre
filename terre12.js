@@ -1,28 +1,27 @@
-const args = process.argv.splice(2)
+const args = process.argv.slice(2)
 
 if (args.length !== 1) {
   console.error("Le programme a besoin d'un unique argument pour fonctionner.")
   process.exit()
 }
 
-const timeFormat12HRegex = /^([0][0-9]|[1][0-2]):([0-5][0-9])(AM|PM)$/
-const arg = args[0]
+const time = args[0]
+const timeFormatRegex = /^(0[1-9]|1[0-2]):[0-5]\d[AP]M$/i
 
-if (!timeFormat12HRegex.test(arg)) {
-  console.error(`Le programme a  besoin d'un argument en format 12H:
-hh:mmAM`)
+if (!timeFormatRegex.test(time)) {
+  console.error(`Le programme a besoin d'un argument en format 12H:
+hh:mmAM ou PM`)
   process.exit()
 }
 
-const hours = Number(arg[0] + arg[1])
-const minutes = Number(arg[3] + arg[4])
-const meridian = Number(arg[5] + arg[6])
-const meridianAM = "AM"
-const meridianPM = "PM"
+const hours = Number(time[0] + time[1])
+const minutes = time[3] + time[4]
+const meridian = (time[5] + time[6]).toUpperCase()
 
-if (hours === 12 && meridian === meridianPM) twentyFourHour = 12
-else if (hours === 12 && meridian === meridianAM) twentyFourHour = "00"
-else if (meridian === meridianAM) twentyFourHour = hours
-else twentyFourHour = hours + 12
+let twentyFourHours = hours
 
-console.log(`${twentyFourHour}:${minutes}`)
+if (hours === 12 && meridian === "PM") twentyFourHours = 12
+else if (hours === 12 && meridian === "AM") twentyFourHours = "00"
+else if (meridian === "PM") twentyFourHours += 12
+
+console.log(`${twentyFourHours}:${minutes}`)
