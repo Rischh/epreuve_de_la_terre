@@ -29,6 +29,4 @@ for (let i = 2; i < number; i++) {
 
 if (isPrimeNumber) {
   console.log(`Oui, ${number} est un nombre premier.`)
-  process.exit()
-}
-console.log(`Non, ${number} n'est pas un nombre premier.`)
+} else console.log(`Non, ${number} n'est pas un nombre premier.`)
