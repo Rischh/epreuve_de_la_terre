@@ -24,4 +24,4 @@ if (hours === 12 && meridian === "PM") twentyFourHours = 12
 else if (hours === 12 && meridian === "AM") twentyFourHours = "00"
 else if (meridian === "PM") twentyFourHours += 12
 
-console.log(`${twentyFourHours}:${minutes}`)
+console.log(`${twentyFourHours.toString().padStart(2, "0")}:${minutes}`)

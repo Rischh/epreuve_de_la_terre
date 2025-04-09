@@ -29,4 +29,4 @@ if (hours === 12) {
   meridian = "PM"
 }
 
-console.log(`${twelveHours}:${minutes}${meridian}`)
+console.log(`${twelveHours.toString().padStart(2, "0")}:${minutes}${meridian}`)
